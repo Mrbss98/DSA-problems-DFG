@@ -1,0 +1,29 @@
+class Solution {
+
+    // a: input array
+    // n: size of array
+    // Function to find maximum circular subarray sum.
+    public int circularSubarraySum(int arr[]) {
+
+        // Your code here
+        
+        int cmins = 0,mins = arr[0];
+        int cmaxs = 0,maxs = arr[0],ts = 0;
+        
+        for(int i = 0;i<arr.length;i++){
+            
+            cmaxs = Math.max(cmaxs + arr[i],arr[i]);
+            maxs = Math.max(cmaxs,maxs);
+            
+            cmins = Math.min(cmins + arr[i],arr[i]);
+            mins = Math.min(cmins,mins);
+            
+            ts = ts + arr[i];
+        }
+        
+        if(mins == ts) return maxs;
+        
+        int cirs = ts - mins;
+        return Math.max(cirs,maxs);
+    }
+}
