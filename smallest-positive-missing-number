@@ -1,0 +1,21 @@
+class Solution {
+    // Function to find the smallest positive number missing from the array.
+    public int missingNumber(int[] arr) {
+        // Your code here
+        int len=arr.length;
+        int small=arr[0];
+        TreeSet<Integer> set=new TreeSet<>();
+        for(int i=0;i<len;i++){
+            if(arr[i]>0)
+            set.add(arr[i]);
+        }
+        int n=set.size();
+        int i=1;
+        for(Integer num: set){
+            if(num!=i)
+            break;
+            i++;
+        }
+        return i;
+    }
+}
