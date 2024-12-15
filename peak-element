@@ -1,0 +1,29 @@
+class Solution {
+
+    public int peakElement(int[] arr) {
+        int n = arr.length;
+
+        // Use binary search to find a peak
+        int left = 0, right = n - 1;
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+
+            // Check if the current element is a peak
+            boolean leftCheck = (mid == 0 || arr[mid] > arr[mid - 1]);
+            boolean rightCheck = (mid == n - 1 || arr[mid] > arr[mid + 1]);
+
+            if (leftCheck && rightCheck) {
+                return mid; // Current element is a peak
+            }
+
+            // Move to the side with a larger neighbor
+            if (mid > 0 && arr[mid - 1] > arr[mid]) {
+                right = mid - 1; // Move to the left
+            } else {
+                left = mid + 1; // Move to the right
+            }
+        }
+
+        return -1;
+    }
+}
