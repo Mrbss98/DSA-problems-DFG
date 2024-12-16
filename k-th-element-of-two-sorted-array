@@ -1,0 +1,35 @@
+class Solution {
+    void swap(int i, int j, int[] a, int[] b) {
+		int temp=a[i];
+		a[i]=b[j];
+		b[j]=temp;
+	}
+	
+    public int kthElement(int a[], int b[], int k) {
+            	int n=a.length;
+    	int m=b.length;
+    	int i=n-1;
+    	int j=0;
+    	
+    	while(i>=0 && j<m) {
+    		if(a[i]>b[j]) {
+    			swap(i,j,a,b);
+    			i--;
+    			j++;
+    		}else {
+    			j++;
+    		}
+    	}
+
+    	Arrays.sort(a);
+    	Arrays.sort(b);
+    
+    	
+    	if(k<=n) 
+    		return a[k-1];
+    	else {
+    		int ind=(k-n)-1;    		
+    		return b[ind];
+    	}
+    }
+}
