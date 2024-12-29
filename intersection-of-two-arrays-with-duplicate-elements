@@ -1,0 +1,37 @@
+class Solution {
+    public ArrayList<Integer> intersectionWithDuplicates(int[] a, int[] b) {
+        // code here
+        
+          Arrays.sort(a);
+          Arrays.sort(b);
+
+        int n1 = a.length;
+        int n2 = b.length;
+
+        int i = 0, j = 0;
+        ArrayList<Integer> ans = new ArrayList<>();
+
+        while (i < n1 && j < n2) {
+            if (a[i] == b[j]) {
+                ans.add(a[i]);
+                i++;
+                j++;
+            } else if (a[i] > b[j]) {
+                j++;
+            } else {
+                i++;
+            }
+
+            // Skip duplicates in `a`
+            while (i < n1 && !ans.isEmpty() && a[i] == ans.get(ans.size() - 1)) {
+                i++;
+            }
+            // Skip duplicates in `b`
+            while (j < n2 && !ans.isEmpty() && b[j] == ans.get(ans.size() - 1)) {
+                j++;
+            }
+        }
+
+        return ans;
+    }
+}
