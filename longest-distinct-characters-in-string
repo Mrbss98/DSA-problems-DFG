@@ -1,0 +1,26 @@
+class Solution {
+    public int longestUniqueSubstr(String s) 
+    {
+        int maxi = 0; 
+        int check = 0; 
+        int start = 0; 
+
+        for (int i = 0; i < s.length(); i++) 
+        {
+            int charToInt = (s.charAt(i) - 'a'); 
+
+             while ((check & (1 << charToInt)) > 0) 
+            {
+                check &= ~(1 << (s.charAt(start) - 'a'));
+                start++;
+            }
+            
+            check |= (1 << charToInt); 
+            
+            maxi = Math.max(maxi, i - start + 1); 
+            
+        }
+
+        return maxi;
+    }
+}
